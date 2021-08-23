@@ -1,0 +1,24 @@
+import { v4 as uuid } from "uuid";
+
+const dataGetter = (cardType, data) => {
+  debugger;
+  if (cardType === "pokemon") {
+    return {
+      id: uuid(),
+      front: data.sprites.front_default,
+      back: data.sprites.back_default,
+      name: data.name,
+      stats: data.stats.map((stat) => ({
+        value: stat.base_stat,
+        name: stat.stat.name,
+      })),
+    };
+  } else {
+    return {
+      image: data.cards[0].image,
+      id: uuid(),
+    };
+  }
+};
+
+export default dataGetter;
